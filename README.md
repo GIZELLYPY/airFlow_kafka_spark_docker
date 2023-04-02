@@ -48,7 +48,7 @@ The data are modeled for be saved on this ways:
 - Container 4: Kafka Server
 - Container 5: Spark + hadoop
 - Container 2 is responsible for producing data in a stream fashion, so my source data (train.csv).
-- Container 5 is responsible for Consuming the data and projecting the insights 
+- Container 5 is responsible for Consuming the data in partitioned way.
 > To bind all the containers together using docker-compose i have taken Pre-Configured DockerFiles available on Docker-hub.
 
 
