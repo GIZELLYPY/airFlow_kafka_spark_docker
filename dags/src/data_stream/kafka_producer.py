@@ -37,7 +37,7 @@ def generate_stream(**kwargs):
     )
 
     with open(os.getcwd() + input_file_loc, mode="r") as f:
-        logging.info("Reading....", os.getcwd() + input_file_loc)
+        logging.info("Reading....")
         for line in f:
             json_comb = dumps(line)
             producer.send(topic, value=json_comb)
