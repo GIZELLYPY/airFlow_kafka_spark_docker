@@ -3,7 +3,7 @@ import os
 from pyspark.sql import DataFrame
 from airflow.models import Variable
 
-DATA_OUTPUT = Variable.get("data_output")
+DATA_OUTPUT = Variable.get("DATA_OUTPUT")
 
 output_dir = os.getcwd() + DATA_OUTPUT
 

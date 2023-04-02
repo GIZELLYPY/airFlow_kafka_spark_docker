@@ -1,10 +1,38 @@
-bootstrap_servers = 	["kafka:9092"]
-BOOTSTRAP_SERVERS = ["kafka:9092"]
-
-data_output = /data/output/
-DATA_OUTPUT = /data/output/
-
-great_expectation_suite = /usr/local/airflow/data/great_expectation_suite.json
-TEST_SUITE = /usr/local/airflow/data/great_expectation_suite.json
-
-PATH_STREAM = /data/train.csv
+{
+    "ge_cloud_id": null,
+    "expectations": [
+        {
+            "expectation_type": "expect_table_columns_to_match_set",
+            "kwargs": {
+                "column_set": [
+                    "key",
+                    "fare_amount",
+                    "pickup_datetime",
+                    "pickup_longitude",
+                    "pickup_latitude",
+                    "dropoff_longitude",
+                    "dropoff_latitude",
+                    "passenger_count",
+                    "pickup_year",
+                    "pickup_year_month",
+                    "pickup_date",
+                    "hour",
+                    "pickup_hour"
+                ]
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "key"
+            },
+            "meta": {}
+        }
+    ],
+    "data_asset_type": "Dataset",
+    "expectation_suite_name": "default",
+    "meta": {
+        "great_expectations_version": "0.16.4"
+    }
+}
