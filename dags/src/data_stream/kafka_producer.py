@@ -4,6 +4,8 @@ from json import dumps
 import os
 import logging
 from airflow.models import Variable
+import warnings
+warnings.filterwarnings('ignore')
 
 kafka = Variable.get("BOOTSTRAP_SERVERS")
 
