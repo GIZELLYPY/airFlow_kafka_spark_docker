@@ -74,6 +74,6 @@ Before starting any dag, it is necessary to do some settings. These settings are
             * <code>mv metastore_db metastore_db.tmp</code>
             * Re run: <code>schematool -initSchema -dbType derby</code>
    - 5) <code>cd /opt/apache-hive-2.0.1-bin/bin/</code>
-            * <code>chmod 777 hive</code>
-            * <code>hive --service metastore</code>
-  - 6) **Now trigger the DAG 1_streaming from Airflow UI.**
+   - 6) <code>chmod 777 hive</code>
+   - 7) <code>hive --service metastore</code>
+  - 8) **Now trigger the DAG 1_streaming from Airflow UI.**
