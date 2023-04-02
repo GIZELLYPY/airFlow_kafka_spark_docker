@@ -1,0 +1,10 @@
+bootstrap_servers = 	["kafka:9092"]
+BOOTSTRAP_SERVERS = ["kafka:9092"]
+
+data_output = /data/output/
+DATA_OUTPUT = /data/output/
+
+great_expectation_suite = /usr/local/airflow/data/great_expectation_suite.json
+TEST_SUITE = /usr/local/airflow/data/great_expectation_suite.json
+
+PATH_STREAM = /data/train.csv

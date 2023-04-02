@@ -1,0 +1,117 @@
+FROM puckel/docker-airflow:latest
+
+USER root
+RUN whoami
+RUN apt-get update
+RUN apt-get install sudo
+
+RUN apt-get update \
+ && apt-get install -y locales \
+ && dpkg-reconfigure -f noninteractive locales \
+ && locale-gen C.UTF-8 \
+ && /usr/sbin/update-locale LANG=C.UTF-8 \
+ && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+ && locale-gen \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# Users with other locales should set this in their derivative image
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+RUN mkdir -p /usr/share/man/man1
+
+# JAVA
+RUN apt-get update \
+ && apt-get install -y openjdk-8-jre \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+ 
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+RUN apt-get update \
+ && apt-get install -y vim \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+ 
+RUN apt-get update \
+ && apt-get install -y dos2unix \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* 
+
+RUN apt-get update \
+ && apt-get install -y net-tools \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* 
+
+RUN netstat -tulpn | grep 9083
+RUN netstat -tulpn | grep 9082
+
+# Install Hadoop
+ENV HADOOP_VERSION=2.7.3
+ENV HADOOP_HOME /opt/hadoop-$HADOOP_VERSION
+ENV HADOOP_CONF_DIR=$HADOOP_HOME/conf
+ENV PATH $PATH:$HADOOP_HOME/bin
+RUN mkdir -p $HADOOP_HOME
+RUN curl -sL \
+  "https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz" \
+    | gunzip \
+    | tar -x -C /opt/ \
+  && rm -rf $HADOOP_HOME/share/doc \
+  && chown -R root:root $HADOOP_HOME \
+  && mkdir -p $HADOOP_HOME/logs \
+  && mkdir -p $HADOOP_CONF_DIR \
+  && chmod 777 $HADOOP_CONF_DIR \
+  && chmod 777 $HADOOP_HOME/logs \
+  && chmod 777 $HADOOP_HOME
+
+
+# Install Hive
+ENV HIVE_VERSION=2.0.1
+ENV HIVE_HOME=/opt/apache-hive-$HIVE_VERSION-bin
+ENV HIVE_CONF_DIR=$HIVE_HOME/conf
+ENV PATH $PATH:$HIVE_HOME/bin
+RUN mkdir -p $HIVE_HOME
+RUN curl -sL \
+  "https://archive.apache.org/dist/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz" \
+    | gunzip \
+    | tar -x -C /opt/ \
+  && chown -R root:root $HIVE_HOME \
+  && mkdir -p $HIVE_HOME/hcatalog/var/log \
+  && mkdir -p $HIVE_HOME/var/log \
+  && mkdir -p /data/hive/ \
+  && mkdir -p $HIVE_CONF_DIR \
+  && chmod 777 $HIVE_HOME/hcatalog/var/log \
+  && chmod 777 $HIVE_HOME/var/log \
+  && chmod 777 $HIVE_HOME
+
+# Install Spark
+ENV SPARK_VERSION=2.3.1
+ENV SPARK_HOME=/opt/spark-$SPARK_VERSION-bin-hadoop2.7
+ENV SPARK_CONF_DIR=$SPARK_HOME/conf
+ENV PATH $PATH:$SPARK_HOME/bin
+RUN mkdir -p $SPARK_HOME
+RUN curl -sL \
+  "https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" \
+    | gunzip \
+    | tar -x -C /opt/ \
+  && chown -R root:root $SPARK_HOME \
+  && mkdir -p /data/spark/ \
+  && mkdir -p $SPARK_HOME/logs \
+  && mkdir -p $SPARK_CONF_DIR \
+  && chmod 777 $SPARK_HOME/logs \
+  && chmod 777 $SPARK_HOME
+
+RUN chmod 777 opt/apache-hive-2.0.1-bin
+
+USER $USERNAME
+RUN whoami
+EXPOSE 22
+EXPOSE 4040
+EXPOSE 9083
+EXPOSE 9082
+EXPOSE 10000
+
+CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
