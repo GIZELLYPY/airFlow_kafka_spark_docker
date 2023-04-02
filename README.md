@@ -65,7 +65,7 @@ Before starting any dag, it is necessary to do some settings. These settings are
  - 3) Export Java Home inside container: 
         * Access the container using: <code>docker exec -ti [airflow-container-id] bash</code>
         * <code>export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")</code>
-        * <code>export source ~/.bashrc</code>
+        * <code>source ~/.bashrc</code>
   - 4) Start Hive inside container:
         * Access the container using: <code>docker exec -ti [airflow-container-id] bash</code>
         * Before you run hive for the first time, run: <code>schematool -initSchema -dbType derby</code>
