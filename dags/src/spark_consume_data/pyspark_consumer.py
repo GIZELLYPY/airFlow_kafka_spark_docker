@@ -72,7 +72,7 @@ def treat_transactions(input_df: DataFrame, checkpoint_path: str) -> DataFrame:
 def pyspark_consumer(
     checkpoint_trans_path: str, CLIENT: str, TOPICS: str, spark: "SparkSession"
 ) -> DataFrame:
-    """_summary_
+    """Read messages from a number of Kafka TOPICS.
 
     Args:
         checkpoint_trans_path (str):  Used to recover from failures
