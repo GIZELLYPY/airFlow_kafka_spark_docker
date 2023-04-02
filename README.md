@@ -13,7 +13,7 @@ Write events to a Kafka cluster. A producer partitioner maps each message from t
 - Run validation (Data Test) on data based on expecation suite.
 - If the Data Test is True, that means there is no problem with the data and this can be modeled and saved with success. But if the Data Test is False, the data will be discarded.
 
-![Screenshot from 2023-04-02 15-26-14](https://user-images.githubusercontent.com/52425554/229371667-7ce219fc-25aa-40b4-a06a-1304ea56920c.png)
+![Screenshot from 2023-04-02 16-06-16](https://user-images.githubusercontent.com/52425554/229373612-c0904506-8294-485c-b76b-8e802050d8f4.png)
 
 
 The data are modeled for be saved on this ways:  
