@@ -38,7 +38,7 @@ def ride_per_month(spark: "SparkSession") -> DataFrame:
 
     ride_per_month.write.option("header", True).partitionBy(
         ["pickup_year", "pickup_year_month"]
-    ).mode("overwrite").parquet("analytics/taxi_fare_amount.parquet")
+    ).mode("overwrite").parquet(output_dir + "analytics/taxi_fare_amount.parquet")
 
 
 def ride_amount_per_hour(spark: "SparkSession") -> DataFrame:
