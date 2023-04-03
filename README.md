@@ -59,7 +59,7 @@ Before starting any dag, it is necessary to do some settings. These settings are
 - 1) Download train.csv https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction/data?select=train.csv  and save on directory data.
 - 2) On Airflow UI, create the airflow variables in Admin>Variables:
         * **BOOTSTRAP_SERVERS** = kafka:9092
-        * **DATA_OUTPUT** = /data/output/
+        * **DATA_OUTPUT** = /usr/local/airflow/data/output/
         * **TEST_SUITE** = /usr/local/airflow/data/great_expectation_suite.json
         * **PATH_STREAM** = /data/train.csv
  - 3) Export Java Home inside container: 
