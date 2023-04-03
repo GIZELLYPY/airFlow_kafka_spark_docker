@@ -28,6 +28,97 @@
                 "column": "key"
             },
             "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "fare_amount"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_datetime"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_longitude"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_latitude"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "dropoff_longitude"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "dropoff_latitude"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "passenger_count"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_year"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_year_month"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_date"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "hour"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_not_be_null",
+            "kwargs": {
+                "column": "pickup_hour"
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_values_to_be_unique",
+            "kwargs": {
+                "column": "key"
+            },
+            "meta": {}
         }
     ],
     "data_asset_type": "Dataset",
