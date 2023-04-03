@@ -5,8 +5,7 @@ from airflow.models import Variable
 
 
 DATA_OUTPUT = Variable.get("DATA_OUTPUT")
-
-output_dir = os.getcwd() + DATA_OUTPUT
+output_dir = DATA_OUTPUT
 
 
 def ride_per_month(spark: "SparkSession") -> DataFrame:
