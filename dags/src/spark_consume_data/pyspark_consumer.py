@@ -107,7 +107,8 @@ def pyspark_consumer(
     # Check if the dataframe is still streaming , if not then get out
     while trans_df.isStreaming:
         trans_df = spark.sql("select * from TransactionTable")
-        trans_df.write.saveAsTable("TAXI_TRANSACTIONS", mode="overwrite")
+        trans_df_clean = trans_df.dropna().drop_duplicates()
+        trans_df_clean.write.saveAsTable("TAXI_TRANSACTIONS", mode="overwrite")
         sleep(5)
 
 
